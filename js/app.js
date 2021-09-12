@@ -1,4 +1,4 @@
-// showDefault: showing default image after load-
+// showDefault: showing default products after load-
 const showDefault = () => {
   const data = [
     {
