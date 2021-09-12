@@ -1,4 +1,5 @@
-const loadProducts = () => {
+// showDefault: showing default image after load-
+const showDefault = () => {
   const data = [
     {
       id: 1,
@@ -207,13 +208,45 @@ const loadProducts = () => {
       rating: { rate: 3.6, count: 145 },
     },
   ];
+
   showProducts(data);
+  // search button click on functionality-
+  document.getElementById("search-btn").addEventListener("click", () => {
+    document.getElementById("all-products").textContent = "";
+    loadProducts(data);
+  });
+};
+
+const loadProducts = (data) => {
+  searchProducts(data);
+};
+
+// searchProducts: for searching specifi products-
+const searchProducts = (lists) => {
+  const inputContainer = document.getElementById("input-field");
+  const searchValue = inputContainer.value.toLowerCase();
+  const searchedProducts = lists.filter((list) => {
+    const products =
+      list.description.toLowerCase().includes(searchValue) ||
+      list.title.toLowerCase().includes(searchValue) ||
+      list.category.toLowerCase().includes(searchValue);
+    return products;
+  });
+  if (!searchedProducts || searchedProducts.length === 0) {
+    document.getElementById(
+      "all-products"
+    ).innerHTML = `<h1 class="text-center text-danger">Sorry, no result found</h1>`;
+    return;
+  }
+  showProducts(searchedProducts);
+  inputContainer.value = "";
 };
 
 // show all product in UI
 const showProducts = (products) => {
   const allProducts = products.map((pd) => pd);
 
+  // less50 & more50: condition for product ratings less than 50% & more than 50%-
   const less50Ratings = `
       <i class="bi bi-star-fill less50"></i>
       <i class="bi bi-star-fill less50"></i>
@@ -319,4 +352,4 @@ const updateTotal = () => {
     parseFloat(grandTotal).toFixed(2);
 };
 updateTotal();
-loadProducts();
+showDefault();
