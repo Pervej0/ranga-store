@@ -213,6 +213,23 @@ const loadProducts = () => {
 // show all product in UI
 const showProducts = (products) => {
   const allProducts = products.map((pd) => pd);
+
+  const less50Ratings = `
+      <i class="bi bi-star-fill less50"></i>
+      <i class="bi bi-star-fill less50"></i>
+      <i class="bi bi-star-half less50"></i>
+      <i class="bi bi-star-fill"></i>
+      <i class="bi bi-star-fill"></i>
+  `;
+
+  const more50Raings = `
+      <i class="bi bi-star-fill more50"></i>
+      <i class="bi bi-star-fill more50"></i>
+      <i class="bi bi-star-fill more50"></i>
+      <i class="bi bi-star-fill more50"></i>
+      <i class="bi bi-star-half more50"></i>
+      `;
+
   for (const product of allProducts) {
     const image = product.image;
     const div = document.createElement("div");
@@ -224,8 +241,19 @@ const showProducts = (products) => {
       </div>
       <h3 class="product-title">${product.title}</h3>
       <p class="product-category">Category: ${product.category}</p>
-      <h3 class="product-price">Price: $<small class="fw-semi-bold">${product.price}</small></h3>
-      <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
+      <div class="prouct-ratings">
+      ${product.rating.rate < 2.5 ? less50Ratings : more50Raings}
+      <p class="fw-600">${product.rating.rate} <span>(${
+      product.rating.count
+    } people reviews)</span></p>
+      
+      </div>
+      <h3 class="product-price"><small class="fw-semi-bold">$</small>${
+        product.price
+      }</h3>
+      <button onclick="addToCart(${product.id},${
+      product.price
+    })" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
       <button id="details-btn" class="btn btn-danger">Details</button>
     </div>
       `;

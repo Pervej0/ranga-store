@@ -2,6 +2,7 @@ body {
   overflow-x: hidden;
   font-family: "Montserrat", sans-serif;
   margin: 0px 15px;
+  background-color: #d5d5d5;
 }
 .search-container {
   margin: 30px 0px;
@@ -88,6 +89,23 @@ body {
 }
 .product-price small {
   font-size: 16px;
+}
+
+.prouct-ratings p {
+  font-size: 22px;
+}
+
+.prouct-ratings p span {
+  font-size: 14px;
+}
+
+.prouct-ratings i {
+  color: #c5c5c5;
+}
+
+.prouct-ratings .less50,
+.prouct-ratings .more50 {
+  color: #ebb506;
 }
 
 .cart {
