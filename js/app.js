@@ -284,9 +284,9 @@ const showProducts = (products) => {
       <h3 class="product-price"><small class="fw-semi-bold">$</small>${
         product.price
       }</h3>
-      <button onclick="addToCart(${product.id},${
-      product.price
-    })" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
+      <button onclick="addToCart(${
+        product.price
+      })" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
       <button id="details-btn" class="btn btn-danger">Details</button>
     </div>
       `;
@@ -296,7 +296,7 @@ const showProducts = (products) => {
 
 // addToCart: mantain functionality related add to card button-
 let count = 0;
-const addToCart = (id, price) => {
+const addToCart = (price) => {
   count = count + 1;
   updatePrice("price", price);
 
@@ -308,7 +308,7 @@ const addToCart = (id, price) => {
 // getInputValue: for product price value-
 const getInputValue = (id) => {
   const element = document.getElementById(id).innerText;
-  const converted = parseInt(element);
+  const converted = parseFloat(element);
   return converted;
 };
 
